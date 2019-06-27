@@ -1,11 +1,27 @@
 version: '2'
+volumes:
+  pgdbdata:
 services:
+  postgres:
+    image: postgres:11.4-alpine
+    volumes:
+    - pgdbdata:/var/lib/postgresql/data/pgdata
+    - ./postgres/init:/docker-entrypoint-initdb.d
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypass123
+    ports:
+    - "5432:5432"
   api:
     build:
       context: ./nodeapp
       dockerfile: Dockerfile.dev
     environment:
       NODE_ENV: development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypass123
+      POSTGRES_HOST: postgres
     volumes:
       - ./nodeapp/src:/usr/src/nodeapp/src
       - /usr/src/nodeapp/node_modules
@@ -13,3 +29,5 @@ services:
       - "8080:8080"
       - "56745:56745"
     entrypoint: ["npm", "run", "develop"]
+    depends_on:
+      - postgres

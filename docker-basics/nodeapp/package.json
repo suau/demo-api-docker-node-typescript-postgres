@@ -1,7 +1,7 @@
 {
   "name": "docker-basics",
-  "version": "0.2.0",
-  "description": "A basic nodejs app with express and typescript",
+  "version": "0.3.0",
+  "description": "A basic nodejs app with express, typescript and postgres",
   "main": "index.js",
   "scripts": {
     "build": "node_modules/typescript/bin/tsc -p ./src",
@@ -17,7 +17,8 @@
     "docker",
     "node",
     "typescript",
-    "express"
+    "express",
+    "postgres"
   ],
   "author": "suau.hwang@gmail.com",
   "license": "Apache-2.0",
@@ -29,6 +30,7 @@
     "body-parser": "1.19.0",
     "cookie-parser": "1.4.4",
     "express": "4.17.1",
+    "pg": "7.11.0",
     "typescript": "3.5.2"
   },
   "devDependencies": {
@@ -36,6 +38,7 @@
     "@types/cookie-parser": "1.4.1",
     "@types/express": "4.17.0",
     "@types/node": "10.14.10",
+    "@types/pg": "7.4.14",
     "nodemon": "1.19.1"
   }
 }
